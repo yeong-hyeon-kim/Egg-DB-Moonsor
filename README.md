@@ -1,4 +1,4 @@
-## 프로젝트 개요(Introduce Project)
+## 📕 프로젝트 개요(Introduce Project)
 
 <hr>
 
@@ -6,7 +6,7 @@
 
 * 프로젝트 간단 소개
 
-## 기능(Function)
+## 🏷️ 기능(Function)
 
 <hr>
 
@@ -34,7 +34,7 @@
    2. 세부 기능 B
    3. 세부 기능 C
   
-## 개발 환경(Develop Environment)
+## 💻 개발 환경(Develop Environment)
 
 <hr>
 
@@ -52,15 +52,13 @@
 
 <hr>
 
-## 빌드(Bulid)
+### 빌드(Bulid)
 
 * Bulid A
 * Bulid B
 * Bulid C
 
-<hr>
-
-## 테스트(Test)
+### 테스트(Test)
 
 * Test A
 * Test B
@@ -68,7 +66,7 @@
 
 <hr>
 
-## 비고(Remark)
+## 📖 비고(Remark)
 
 * Remark A
 * Remark B
