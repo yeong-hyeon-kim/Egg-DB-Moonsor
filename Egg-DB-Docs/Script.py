@@ -63,23 +63,33 @@ def SetConfig():
     dbms = str(Datas["DBMS"])
 
 
-def GenDescriptionString(ColumnList, HeaderText):
+def GenDescriptionString(DataList, HeaderText, Type):
     try:
 
-        DocString = "### " + HeaderText.replace("'", "") + "\n\n"
-        DocString += "|ORDINAL_POSITION|COLUMN_NAME|IS_NULLABLE|DATA_TYPE|DESCRIPTION|" + "\n"
-        DocString += "|:---------------|:----------|:---------:|:--------|:----------|" + "\n"
+        if Type == "TABLE":
+            DocString = "### " + HeaderText.replace("'", "") + "\n\n"
+            DocString += "|TABLE_NAME|DESCRIPTION|" + "\n"
+            DocString += "|:---------|:----------|" + "\n"
 
-        print(DocString)
+            for i in range(0, len(DataList)):
+                DocString += "|[" + str(DataList[i][0]) + "](#" + \
+                    str(DataList[i][0]).replace("'", "") + ")||\n"
 
-        # [0] ORDINAL_POSITION
-        # [1] COLUMN_NAME
-        # [2] IS_NULLABLE
-        # [3] DATA_TYPE
-        # [4] DESCRIPTION
-        for i in range(0, len(ColumnList)):
-            DocString += "|" + str(ColumnList[i][0]) + "|`" + str(ColumnList[i][1]) + "`|" + str(
-                ColumnList[i][2]) + "|" + str(ColumnList[i][3]) + "||\n"
+        elif Type == "COLUMN":
+            DocString = "#### " + HeaderText.replace("'", "") + "\n\n"
+            DocString += "|ORDINAL_POSITION|COLUMN_NAME|IS_NULLABLE|DATA_TYPE|DESCRIPTION|" + "\n"
+            DocString += "|:---------------|:----------|:---------:|:--------|:----------|" + "\n"
+
+            print(DocString)
+
+            # [0] ORDINAL_POSITION
+            # [1] COLUMN_NAME
+            # [2] IS_NULLABLE
+            # [3] DATA_TYPE
+            # [4] DESCRIPTION
+            for i in range(0, len(DataList)):
+                DocString += "|" + str(DataList[i][0]) + "|`" + str(DataList[i][1]) + "`|" + str(
+                    DataList[i][2]) + "|" + str(DataList[i][3]) + "||\n"
 
         DocString += "\n"
 
@@ -94,9 +104,9 @@ def GenDescriptionString(ColumnList, HeaderText):
 def GenSignature(Mode):
     global OutputString
 
-    if Mode == "Header":
+    if Mode == "HEADER":
         Sign = "## Table Description \n"
-    elif Mode == "Footer":
+    elif Mode == "FOOTER":
         Sign = ""
         Sign += "_Update Date : " + str(datetime.datetime.utcnow()) + "_\n"
 
@@ -146,7 +156,11 @@ def SelectDbStructure(server, user, password, databases, dbms):
 
         print(len(LIST_TABLE))
 
-        GenSignature("Header")
+        GenSignature("HEADER")
+
+        TableList = LIST_TABLE
+
+        GenDescriptionString(TableList, "Table List", "TABLE")
 
         for i in range(0, len(LIST_TABLE)):
             print(LIST_TABLE[i])
@@ -170,13 +184,13 @@ def SelectDbStructure(server, user, password, databases, dbms):
 
             print(LIST_TABLE_COLUMN)
 
-            GenDescriptionString(ColList, TableName)
+            GenDescriptionString(ColList, TableName, "COLUMN")
 
             LIST_TABLE_COLUMN.clear()
 
         conn.close()
 
-        GenSignature("Footer")
+        GenSignature("FOOTER")
         WriteFile("./Egg-DB-Docs/SCRIPT.md", "w", OutputString)
     except:
         pass
