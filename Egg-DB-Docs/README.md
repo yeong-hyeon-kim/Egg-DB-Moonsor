@@ -32,5 +32,4 @@
   * 🕒 Version : `10 Pro 21H2`
 * ✔ Language : ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=Python&logoColor=white)
   * 🕒 Version : `3.10.4`
-* ✔ Framework : `Any Framework`
 * ✔ Dependency : [`requirements`](/Egg-DB-Docs/requirements.txt)
