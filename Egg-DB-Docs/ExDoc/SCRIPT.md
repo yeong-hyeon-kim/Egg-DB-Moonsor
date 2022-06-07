@@ -1,4 +1,5 @@
 ## Table Description
+>_Update Date : 2022-06-07 08:34:04.542095_
 
 ### Table List
 
@@ -60,4 +61,3 @@
 |4|`COLUMN_D`|NO|int||
 |5|`COLUMN_E`|YES|nvarchar||
 
-_Update Date : 2022-06-07 08:34:04.542095_
