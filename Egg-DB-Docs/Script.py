@@ -90,20 +90,21 @@ def GenDescriptionString(ColumnList, HeaderText):
         pass
 
 
-def GenSignature():
+def GenSignature(Mode):
     global OutputString
 
-    Sign = ""
-    Sign += "_Update Date : " + str(datetime.datetime.utcnow()) + "_\n"
+    if Mode == "Header":
+        Sign = "## Table Description \n"
+    elif Mode == "Footer":
+        Sign = ""
+        Sign += "_Update Date : " + str(datetime.datetime.utcnow()) + "_\n"
 
     OutputString += Sign
 
 
 def SelectDbStructure(server, user, password, databases, dbms):
     try:
-        # conn = pymssql.connect(server=server, user=user,
-        #                        password=password, database=databases)
-
+        # Connection By DBMS.
         if dbms == "SQL-SERVER":
             conn = pymssql.connect(
                 server=server, user=user, password=password, database=databases
@@ -121,14 +122,16 @@ def SelectDbStructure(server, user, password, databases, dbms):
 
         cursor = conn.cursor()
 
-        # --------------------------------
+        # Request Query By DBMS.
         QueryString = ReturnQueryByDbms(dbms)
 
         print(QueryString["TABLE"])
 
+        # Select Table List.
         cursor.execute(QueryString["TABLE"])
         row = cursor.fetchone()
 
+        # Init List.
         LIST_TABLE = []
         LIST_TABLE_COLUMN = []
 
@@ -142,15 +145,17 @@ def SelectDbStructure(server, user, password, databases, dbms):
 
         print(len(LIST_TABLE))
 
+        GenSignature("Header")
+
         for i in range(0, len(LIST_TABLE)):
             print(LIST_TABLE[i])
 
             TableName = str(LIST_TABLE[i])[1:-2]
 
             print(TableName)
+            print(QueryString["COLUMN"] + TableName)
 
-            print("SELECT ORDINAL_POSITION, COLUMN_NAME, IS_NULLABLE, DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = " + TableName)
-
+            # Select Columns By Table.
             cursor.execute(QueryString["COLUMN"] + TableName)
             rows = cursor.fetchone()
 
@@ -170,7 +175,7 @@ def SelectDbStructure(server, user, password, databases, dbms):
 
         conn.close()
 
-        GenSignature()
+        GenSignature("Footer")
         WriteFile("./Egg-DB-Docs/SCRIPT.md", "w", OutputString)
     except:
         pass
