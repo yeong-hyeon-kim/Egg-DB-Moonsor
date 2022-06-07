@@ -34,8 +34,8 @@ def ReturnQueryByDbms(dbms):
         QueryString["TABLE"] = "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES ORDER BY TABLE_NAME"
         QueryString["COLUMN"] = "SELECT ORDINAL_POSITION, COLUMN_NAME, IS_NULLABLE, DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = "
     elif dbms == "MY-SQL" or dbms == "MARIA-DB":
-        QueryString["TABLE"] = "show tables"
-        QueryString["COLUMN"] = "show full columns from"
+        QueryString["TABLE"] = "SHOW TABLES"
+        QueryString["COLUMN"] = "SHOW FULL COLUMNS FROM "
     elif dbms == "ORACLE":
         QueryString["TABLE"] = "SELECT * FROM USER_TABLES"
         QueryString["COLUMN"] = "SELECT * FROM COLS WHERE TABLE_NAME ="
