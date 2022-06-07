@@ -41,9 +41,12 @@
 
 ### 세부 환경(Environment Detail)
 
-* ✔ OS : `Any OS` , Version : `Any Version`
+* ✔ OS : `Any OS` 
+  * 🕒 Version : `Any Version`
 * ✔ Language : `Any Language`
+  * 🕒 Version : `Any Version`
 * ✔ Framework : `Any Framework`
+* ✔ Dependency : `Dependency`
 
 ### 확인 사항(Check List)
 
