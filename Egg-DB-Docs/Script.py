@@ -1,5 +1,7 @@
 import datetime
 import pymssql
+import pymysql
+import cx_Oracle
 import json
 
 # Config
@@ -99,8 +101,24 @@ def GenSignature():
 
 def SelectDbStructure(server, user, password, databases, dbms):
     try:
-        conn = pymssql.connect(server=server, user=user,
-                               password=password, database=databases)
+        # conn = pymssql.connect(server=server, user=user,
+        #                        password=password, database=databases)
+
+        if dbms == "SQL-SERVER":
+            conn = pymssql.connect(
+                server=server, user=user, password=password, database=databases
+            )
+        elif dbms == "MY-SQL" or dbms == "MARIA-DB":
+            conn = pymysql.connect(
+                server=server, user=user, password=password, database=databases
+            )
+        elif dbms == "ORACLE":
+            conn = cx_Oracle.connect(
+                server=server, user=user, password=password, database=databases
+            )
+        else:
+            print()
+
         cursor = conn.cursor()
 
         # --------------------------------
