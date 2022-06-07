@@ -56,10 +56,10 @@ def SetConfig():
     global databases
     global dbms
 
-    server = str(Datas["CONNETION"]["SERVER"])
-    user = str(Datas["CONNETION"]["USER"])
-    password = str(Datas["CONNETION"]["PASSWORD"])
-    databases = str(Datas["CONNETION"]["DATABASE"])
+    server = str(Datas["CONNECTION"]["SERVER"])
+    user = str(Datas["CONNECTION"]["USER"])
+    password = str(Datas["CONNECTION"]["PASSWORD"])
+    databases = str(Datas["CONNECTION"]["DATABASE"])
     dbms = str(Datas["DBMS"])
 
 
