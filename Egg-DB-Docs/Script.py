@@ -106,9 +106,9 @@ def GenSignature(Mode):
 
     if Mode == "HEADER":
         Sign = "## Table Description \n"
+        Sign += ">_Update Date : " + str(datetime.datetime.utcnow()) + "_\n"
     elif Mode == "FOOTER":
         Sign = ""
-        Sign += "_Update Date : " + str(datetime.datetime.utcnow()) + "_\n"
 
     OutputString += Sign
 
@@ -186,6 +186,7 @@ def SelectDbStructure(server, user, password, databases, dbms):
 
             GenDescriptionString(ColList, TableName, "COLUMN")
 
+            # Next Table.
             LIST_TABLE_COLUMN.clear()
 
         conn.close()
