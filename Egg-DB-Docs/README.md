@@ -33,3 +33,8 @@
 * ✔ Language : ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=Python&logoColor=white)
   * 🕒 Version : `3.10.4`
 * ✔ Dependency : [`requirements`](/Egg-DB-Docs/requirements.txt)
+
+
+## 📖 비고(Remark)
+
+* [Example Document](./ExDoc/SCRIPT.md)
