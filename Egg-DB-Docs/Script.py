@@ -1,3 +1,4 @@
+from dataclasses import replace
 import datetime
 import pymssql
 import pymysql
@@ -65,9 +66,9 @@ def SetConfig():
 def GenDescriptionString(ColumnList, HeaderText):
     try:
 
-        DocString = "### " + HeaderText + "\n\n"
+        DocString = "### " + HeaderText.replace("'", "") + "\n\n"
         DocString += "|ORDINAL_POSITION|COLUMN_NAME|IS_NULLABLE|DATA_TYPE|DESCRIPTION|" + "\n"
-        DocString += "|----------------|-----------|-----------|---------|-----------|" + "\n"
+        DocString += "|:---------------|:----------|:---------:|:--------|:----------|" + "\n"
 
         print(DocString)
 
