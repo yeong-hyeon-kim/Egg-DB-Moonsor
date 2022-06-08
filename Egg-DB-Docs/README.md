@@ -6,21 +6,21 @@
 ## 🏷️ 기능(Function)
 
 
-* [Markdown 형식의 테이블 기술서를 작성](#Markdown-형식의-테이블-기술서를-작성)
+* [Markdown, Html 형식의 테이블 기술서를 작성](#Markdown,-Html-형식의-테이블-기술서를-작성)
 
 
 ### 세부 기능(Function Detail)
 
 
-#### Markdown 형식의 테이블 기술서를 작성
+#### Markdown, Html 형식의 테이블 기술서를 작성
 
-   * 테이블과 컬럼을 조회하여 Markdown 문법으로 테이블 기술서를 작성합니다.
+   * 테이블과 컬럼을 조회하여 Markdown, Html 문법으로 테이블 기술서를 작성합니다.
 
 ## 💡 사용법(Tip)
 
  1. [config.json 데이터베이스 정보를 기입합니다.](/Egg-DB-Docs/config.json)
  2. [SCRIPT.py 파일을 실행합니다.](/Egg-DB-Docs/SCRIPT.py)
- 3. [SCRIPT.md 파일을 확인합니다.](/Egg-DB-Docs/SCRIPT.md)
+ 3. [SCRIPT.md 파일을 확인합니다.](/Egg-DB-Docs/SCRIPT.md) 또는 [SCRIPT.html 파일을 확인합니다.](/Egg-DB-Docs/SCRIPT.html)
 
 
 ## 💻 개발 환경(Develop Environment)
