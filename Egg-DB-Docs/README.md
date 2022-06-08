@@ -19,7 +19,7 @@
 ## 💡 사용법(Tip)
 
  1. [config.json 데이터베이스 정보를 기입합니다.](/Egg-DB-Docs/config.json)
- 2. [Script.py 파일을 실행합니다.](/Egg-DB-Docs/Script.py)
+ 2. [SCRIPT.py 파일을 실행합니다.](/Egg-DB-Docs/SCRIPT.py)
  3. [SCRIPT.md 파일을 확인합니다.](/Egg-DB-Docs/SCRIPT.md)
 
 
