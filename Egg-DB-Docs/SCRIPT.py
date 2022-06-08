@@ -6,11 +6,13 @@ import cx_Oracle
 import json
 
 # Config
+export_extension = ""
+
+dbms = ""
+server = ""
 server = ""
 user = ""
 password = ""
-databases = ""
-dbms = ""
 
 # Output Final Markdown.
 OutputString = ""
@@ -55,7 +57,9 @@ def SetConfig():
     global password
     global databases
     global dbms
+    global export_extension
 
+    export_extension = str(Datas["EXPORT-EXTENTION"])
     server = str(Datas["CONNECTION"]["SERVER"])
     user = str(Datas["CONNECTION"]["USER"])
     password = str(Datas["CONNECTION"]["PASSWORD"])
@@ -63,35 +67,101 @@ def SetConfig():
     dbms = str(Datas["DBMS"])
 
 
-def GenDescriptionString(DataList, HeaderText, Type):
+def GenDescriptionString(DataList, HeaderText, Element, Extension):
     try:
+        if Extension == "HTML":
+            if Element == "TABLE":
+                # Table
+                DocString = "<table>\n"
 
-        if Type == "TABLE":
-            DocString = "### " + HeaderText.replace("'", "") + "\n\n"
-            DocString += "|TABLE_NAME|DESCRIPTION|" + "\n"
-            DocString += "|:---------|:----------|" + "\n"
+                # Header
+                DocString += "<thead>\n"
+                DocString += "<th>TABLE_NAME</th>\n"
+                DocString += "<th>DESCRIPTION</th>\n"
+                DocString += "</thead>\n"
 
-            for i in range(0, len(DataList)):
-                DocString += "|[" + str(DataList[i][0]) + "](#" + \
-                    str(DataList[i][0]).replace("'", "") + ")||\n"
+                # Body
+                DocString += "<tbody>\n"
 
-        elif Type == "COLUMN":
-            DocString = "#### " + HeaderText.replace("'", "") + "\n\n"
-            DocString += "|ORDINAL_POSITION|COLUMN_NAME|IS_NULLABLE|DATA_TYPE|DESCRIPTION|" + "\n"
-            DocString += "|:---------------|:----------|:---------:|:--------|:----------|" + "\n"
+                for i in range(0, len(DataList)):
+                    DocString += "<tr>\n"
+                    DocString += "<td><a href='#" + \
+                        str(DataList[i][0]) + "'>" + \
+                        str(DataList[i][0]).replace("'", "") + "</a></td>\n"
+                    DocString += "<td></td>\n"
+                    DocString += "</tr>\n"
 
-            print(DocString)
+                DocString += "</tbody>\n"
 
-            # [0] ORDINAL_POSITION
-            # [1] COLUMN_NAME
-            # [2] IS_NULLABLE
-            # [3] DATA_TYPE
-            # [4] DESCRIPTION
-            for i in range(0, len(DataList)):
-                DocString += "|" + str(DataList[i][0]) + "|`" + str(DataList[i][1]) + "`|" + str(
-                    DataList[i][2]) + "|" + str(DataList[i][3]) + "||\n"
+                DocString += "</table>\n"
 
-        DocString += "\n"
+                DocString += "<hr/>\n"
+
+                print()
+            elif Element == "COLUMN":
+                DocString = "<h2 id=" + HeaderText + ">" + \
+                    HeaderText.replace("'", "") + "</h2>\n"
+                # Table
+                DocString += "<table>\n"
+
+                # Header
+                DocString += "<thead>\n"
+                DocString += "<th>ORDINAL_POSITION</th>\n"
+                DocString += "<th>COLUMN_NAME</th>\n"
+                DocString += "<th>IS_NULLABLE</th>\n"
+                DocString += "<th>DATA_TYPE</th>\n"
+                DocString += "<th>DESCRIPTION</th>\n"
+                DocString += "</thead>\n"
+
+                # Body
+                DocString += "<tbody>\n"
+
+                # [0] ORDINAL_POSITION
+                # [1] COLUMN_NAME
+                # [2] IS_NULLABLE
+                # [3] DATA_TYPE
+                # [4] DESCRIPTION
+                for i in range(0, len(DataList)):
+                    DocString += "<tr>\n"
+                    DocString += "<td>" + str(DataList[i][0]) + "</td>\n"
+                    DocString += "<td>" + str(DataList[i][1]) + "</td>\n"
+                    DocString += "<td>" + str(DataList[i][2]) + "</td>\n"
+                    DocString += "<td>" + str(DataList[i][3]) + "</td>\n"
+                    DocString += "<th></th>\n"
+                    DocString += "</tr>\n"
+
+                DocString += "</tbody>\n"
+                DocString += "</table>\n"
+                DocString += "<hr/>\n"
+
+                print()
+        elif Extension == "MARKDOWN":
+            if Element == "TABLE":
+                DocString = "### " + HeaderText.replace("'", "") + "\n\n"
+                DocString += "|TABLE_NAME|DESCRIPTION|" + "\n"
+                DocString += "|:---------|:----------|" + "\n"
+
+                for i in range(0, len(DataList)):
+                    DocString += "|[" + str(DataList[i][0]) + "](#" + \
+                        str(DataList[i][0]).replace("'", "") + ")||\n"
+
+            elif Element == "COLUMN":
+                DocString = "#### " + HeaderText.replace("'", "") + "\n\n"
+                DocString += "|ORDINAL_POSITION|COLUMN_NAME|IS_NULLABLE|DATA_TYPE|DESCRIPTION|" + "\n"
+                DocString += "|:---------------|:----------|:---------:|:--------|:----------|" + "\n"
+
+                print(DocString)
+
+                # [0] ORDINAL_POSITION
+                # [1] COLUMN_NAME
+                # [2] IS_NULLABLE
+                # [3] DATA_TYPE
+                # [4] DESCRIPTION
+                for i in range(0, len(DataList)):
+                    DocString += "|" + str(DataList[i][0]) + "|`" + str(DataList[i][1]) + "`|" + str(
+                        DataList[i][2]) + "|" + str(DataList[i][3]) + "||\n"
+
+            DocString += "\n"
 
         print(DocString)
 
@@ -101,19 +171,56 @@ def GenDescriptionString(DataList, HeaderText, Type):
         pass
 
 
-def GenSignature(Mode):
+def GenSignature(Mode, Extension):
     global OutputString
 
-    if Mode == "HEADER":
-        Sign = "## Table Description \n"
-        Sign += ">_Update Date : " + str(datetime.datetime.utcnow()) + "_\n"
-    elif Mode == "FOOTER":
-        Sign = ""
+    if Extension == "HTML":
+        if Mode == "HEADER":
+            Sign = "<head>\n"
+            Sign += "<style>\n"
+            Sign += "table{\n"
+            Sign += "border : 1px solid white;\n"
+            Sign += "border-collapse : collapse;\n"
+            Sign += "}\n"
+            Sign += "th{"
+            Sign += "border : 1px solid white;\n"
+            Sign += "border-collapse : collapse;\n"
+            Sign += "padding: 10px;\n"
+            Sign += "background-color: black;\n"
+            Sign += "color: white;\n"
+            Sign += "}\n"
+            Sign += "td{\n"
+            Sign += "border : 1px solid white;\n"
+            Sign += "border-collapse : collapse;\n"
+            Sign += "text-align: left;\n"
+            Sign += "padding-left: 10px;\n"
+            Sign += "background-color: black;\n"
+            Sign += "color: white;\n"
+            Sign += "}\n"
+            Sign += "a{\n"
+            Sign += "color: white;\n"
+            Sign += "}\n"
+            Sign += "</style>\n"
+            Sign += "</head>\n"
+            Sign += "<body>\n"
+
+            Sign += "<h1>Table Description</h1> \n"
+            Sign += "<p>" + str(datetime.datetime.utcnow()) + "</p>\n"
+
+        elif Mode == "FOOTER":
+            Sign = "</body>\n"
+    elif Extension == "MARKDOWN":
+        if Mode == "HEADER":
+            Sign = "## Table Description \n"
+            Sign += ">_Update Date : " + \
+                str(datetime.datetime.utcnow()) + "_\n"
+        elif Mode == "FOOTER":
+            Sign = ""
 
     OutputString += Sign
 
 
-def SelectDbStructure(server, user, password, databases, dbms):
+def SelectDbStructure(server, user, password, databases, dbms, extension):
     try:
         # Connection By DBMS.
         if dbms == "SQL-SERVER":
@@ -128,15 +235,11 @@ def SelectDbStructure(server, user, password, databases, dbms):
             conn = cx_Oracle.connect(
                 server=server, user=user, password=password, database=databases
             )
-        else:
-            print()
 
         cursor = conn.cursor()
 
         # Request Query By DBMS.
         QueryString = ReturnQueryByDbms(dbms)
-
-        print(QueryString["TABLE"])
 
         # Select Table List.
         cursor.execute(QueryString["TABLE"])
@@ -146,21 +249,14 @@ def SelectDbStructure(server, user, password, databases, dbms):
         LIST_TABLE = []
         LIST_TABLE_COLUMN = []
 
-        print(len(row))
-
         while row:
             LIST_TABLE.append(row)
             row = cursor.fetchone()
 
-        # --------------------------------
-
-        print(len(LIST_TABLE))
-
-        GenSignature("HEADER")
+        GenSignature("HEADER", extension)
 
         TableList = LIST_TABLE
-
-        GenDescriptionString(TableList, "Table List", "TABLE")
+        GenDescriptionString(TableList, "Table List", "TABLE", extension)
 
         for i in range(0, len(LIST_TABLE)):
             print(LIST_TABLE[i])
@@ -181,21 +277,24 @@ def SelectDbStructure(server, user, password, databases, dbms):
             # --------------------------------
 
             ColList = LIST_TABLE_COLUMN
-
-            print(LIST_TABLE_COLUMN)
-
-            GenDescriptionString(ColList, TableName, "COLUMN")
+            GenDescriptionString(ColList, TableName, "COLUMN", extension)
 
             # Next Table.
             LIST_TABLE_COLUMN.clear()
 
         conn.close()
 
-        GenSignature("FOOTER")
-        WriteFile("./Egg-DB-Docs/SCRIPT.md", "w", OutputString)
+        GenSignature("FOOTER", extension)
+
+        # Output Extension
+        if extension == "HTML":
+            WriteFile("./Egg-DB-Docs/SCRIPT.html", "w", OutputString)
+        elif extension == "MARKDOWN":
+            WriteFile("./Egg-DB-Docs/SCRIPT.md", "w", OutputString)
+
     except:
         pass
 
 
 SetConfig()
-SelectDbStructure(server, user, password, databases, dbms)
+SelectDbStructure(server, user, password, databases, dbms, export_extension)
