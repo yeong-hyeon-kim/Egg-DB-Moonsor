@@ -30,7 +30,7 @@ def WriteFile(Path, Mode, Data):
         f.close()
 
 
-def ReturnQueryByDbms(dbms):
+def ReturnQueryByDbms(dbms, database):
     QueryString = {}
 
     if dbms == "SQL-SERVER":
@@ -38,7 +38,8 @@ def ReturnQueryByDbms(dbms):
         QueryString["COLUMN"] = "SELECT ORDINAL_POSITION, COLUMN_NAME, IS_NULLABLE, DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = "
     elif dbms == "MY-SQL" or dbms == "MARIA-DB":
         QueryString["TABLE"] = "SHOW TABLES"
-        QueryString["COLUMN"] = "SHOW FULL COLUMNS FROM "
+        QueryString["COLUMN"] = "SELECT ORDINAL_POSITION, COLUMN_NAME, IS_NULLABLE, DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = " + \
+            str("'" + database + "'") + " AND TABLE_NAME = "
     elif dbms == "ORACLE":
         QueryString["TABLE"] = "SELECT * FROM USER_TABLES"
         QueryString["COLUMN"] = "SELECT * FROM COLS WHERE TABLE_NAME ="
@@ -236,7 +237,11 @@ def SelectDbStructure(server, user, password, databases, dbms, extension):
             )
         elif dbms == "MY-SQL" or dbms == "MARIA-DB":
             conn = pymysql.connect(
-                server=server, user=user, password=password, database=databases
+                user=user,
+                passwd=password,
+                host=server,
+                db=databases,
+                charset='utf8'
             )
         elif dbms == "ORACLE":
             conn = cx_Oracle.connect(
@@ -246,7 +251,7 @@ def SelectDbStructure(server, user, password, databases, dbms, extension):
         cursor = conn.cursor()
 
         # Request Query By DBMS.
-        QueryString = ReturnQueryByDbms(dbms)
+        QueryString = ReturnQueryByDbms(dbms, databases)
 
         # Select Table List.
         cursor.execute(QueryString["TABLE"])
