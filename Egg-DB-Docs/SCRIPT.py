@@ -132,6 +132,7 @@ def GenDescriptionString(DataList, HeaderText, Element, Extension):
 
                 DocString += "</tbody>\n"
                 DocString += "</table>\n"
+                DocString += "<br/>\n"
                 DocString += "<hr/>\n"
 
                 print()
@@ -178,6 +179,12 @@ def GenSignature(Mode, Extension):
         if Mode == "HEADER":
             Sign = "<head>\n"
             Sign += "<style>\n"
+            Sign += "body{\n"
+            Sign += "background-color: black;\n"
+            Sign += "}\n"
+            Sign += "h1,h2,p{\n"
+            Sign += "color: white;\n"
+            Sign += "}\n"
             Sign += "table{\n"
             Sign += "border : 1px solid white;\n"
             Sign += "border-collapse : collapse;\n"
