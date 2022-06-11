@@ -60,7 +60,7 @@ def SetConfig():
     global dbms
     global export_extension
 
-    export_extension = str(Datas["EXPORT-EXTENTION"])
+    export_extension = str(Datas["EXPORT-EXTENSION"])
     server = str(Datas["CONNECTION"]["SERVER"])
     user = str(Datas["CONNECTION"]["USER"])
     password = str(Datas["CONNECTION"]["PASSWORD"])
