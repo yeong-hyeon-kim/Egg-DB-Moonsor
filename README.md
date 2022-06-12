@@ -54,15 +54,13 @@
 * ✔ Check List B
 * ✔ Check List C
 
-<hr>
-
-### 빌드(Bulid)
+## 🛠️ 빌드(Bulid)
 
 * Bulid A
 * Bulid B
 * Bulid C
 
-### 테스트(Test)
+## 🧪 테스트(Test)
 
 * Test A
 * Test B
