@@ -4,13 +4,11 @@
 
 ## 🏷️ 기능(Function)
 
-
 1. [기능 A](#기능-A)
 2. [기능 B](#기능-B)
 3. [기능 C](#기능-C)
 
 ### 세부 기능(Function Detail)
-
 
 #### 기능 A
 
@@ -35,13 +33,11 @@
  2. 사용법 B
  3. 사용법 C
 
-
 ## 💻 개발 환경(Develop Environment)
-
 
 ### 세부 환경(Environment Detail)
 
-* ✔ OS : `Any OS` 
+* ✔ OS : `Any OS`
   * 🕒 Version : `Any Version`
 * ✔ Language : `Any Language`
   * 🕒 Version : `Any Version`
@@ -54,18 +50,17 @@
 * ✔ Check List B
 * ✔ Check List C
 
-## 🛠️ 빌드(Bulid)
+## 🛠️ 빌드(Build)
 
-* Bulid A
-* Bulid B
-* Bulid C
+* Build A
+* Build B
+* Build C
 
 ## 🧪 테스트(Test)
 
 * Test A
 * Test B
 * Test C
-
 
 ## 📖 비고(Remark)
 
