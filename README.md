@@ -1,72 +1,40 @@
 ## 📕 프로젝트 개요(Introduce Project)
+### Egg DB Docs
 
-### 프로젝트명
-
-* 프로젝트 간단 소개
+* 데이터베이스를 조회하여 테이블 기술서를 작성합니다.
 
 ## 🏷️ 기능(Function)
 
-1. [기능 A](#기능-A)
-2. [기능 B](#기능-B)
-3. [기능 C](#기능-C)
+
+* [Markdown, Html 형식의 테이블 기술서를 작성](#Markdown,-Html-형식의-테이블-기술서를-작성)
+
 
 ### 세부 기능(Function Detail)
 
-#### 기능 A
 
-   1. 세부 기능 A
-   2. 세부 기능 B
-   3. 세부 기능 C
+#### Markdown, Html 형식의 테이블 기술서를 작성
 
-#### 기능 B
-
-   1. 세부 기능 A
-   2. 세부 기능 B
-   3. 세부 기능 C
-
-#### 기능 C
-
-   1. 세부 기능 A
-   2. 세부 기능 B
-   3. 세부 기능 C
+   * 테이블과 컬럼을 조회하여 Markdown, Html 문법으로 테이블 기술서를 작성합니다.
 
 ## 💡 사용법(Tip)
 
- 1. 사용법 A
- 2. 사용법 B
- 3. 사용법 C
+ 1. [config.json 데이터베이스 정보를 기입합니다.](/Egg-DB-Docs/config.json)
+ 2. [SCRIPT.py 파일을 실행합니다.](/Egg-DB-Docs/SCRIPT.py)
+ 3. [SCRIPT.md 파일을 확인합니다.](/Egg-DB-Docs/SCRIPT.md) 또는 [SCRIPT.html 파일을 확인합니다.](/Egg-DB-Docs/SCRIPT.html)
+
 
 ## 💻 개발 환경(Develop Environment)
 
+
 ### 세부 환경(Environment Detail)
 
-* ✔ OS : `Any OS`
-  * 🕒 Version : `Any Version`
-* ✔ Language : `Any Language`
-  * 🕒 Version : `Any Version`
-* ✔ Framework : `Any Framework`
-* ✔ Dependency : `Dependency`
+* ✔ OS : ![Windows](https://img.shields.io/badge/Windows-0078D6?style=flat-square&logo=Windows&logoColor=white)
+  * 🕒 Version : `10 Pro 21H2`
+* ✔ Language : ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=Python&logoColor=white)
+  * 🕒 Version : `3.10.4`
+* ✔ Dependency : [`requirements`](/Egg-DB-Docs/requirements.txt)
 
-### 확인 사항(Check List)
-
-* ✔ Check List A
-* ✔ Check List B
-* ✔ Check List C
-
-## 🛠️ 빌드(Build)
-
-* Build A
-* Build B
-* Build C
-
-## 🧪 테스트(Test)
-
-* Test A
-* Test B
-* Test C
 
 ## 📖 비고(Remark)
 
-* Remark A
-* Remark B
-* Remark C
+* [Example Document](./ExDoc/SCRIPT.md)
