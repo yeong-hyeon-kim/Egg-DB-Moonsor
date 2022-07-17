@@ -1,5 +1,5 @@
 ## 📕 프로젝트 개요(Introduce Project)
-### Egg DB Docs
+### 🍳 Egg DB Moonsor
 
 * 데이터베이스를 조회하여 테이블 기술서를 작성합니다.
 
