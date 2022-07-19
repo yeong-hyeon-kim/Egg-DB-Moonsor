@@ -19,6 +19,14 @@
 ## 💡 사용법(Tip)
 
  1. [config.json 데이터베이스 정보를 기입합니다.](/Egg-DB-Docs/config.json)
+    * "EXPORT-EXTENSION": "출력할 확장자명을 기입합니다.
+      * `MARKDOWN` OR `HTML`
+    * "DBMS": "대상 DBMS를 기입합니다."
+      * `SQL-SERVER`, `MY-SQL`, `MARIA-DB`, `ORACLE`
+    * "SERVER": "`IP` 또는 `DOMAIN`을 기입합니다."
+    * "USER": "사용자명을 기입합니다."
+    * "PASSWORD" : "비밀번호를 기입합니다."
+    * "DATABASE": "데이터베이스를 기입합니다."
  2. [SCRIPT.py 파일을 실행합니다.](/Egg-DB-Docs/SCRIPT.py)
  3. [SCRIPT.md 파일을 확인합니다.](/Egg-DB-Docs/SCRIPT.md) 또는 [SCRIPT.html 파일을 확인합니다.](/Egg-DB-Docs/SCRIPT.html)
 
