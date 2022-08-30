@@ -32,11 +32,10 @@
 
 ### 세부 환경(Environment Detail)
 
-* ✔ OS : ![Windows](https://img.shields.io/badge/Windows-0078D6?style=flat-square&logo=Windows&logoColor=white)
-  * 🕒 Version : `10 Pro 21H2`
-* ✔ Language : ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=Python&logoColor=white)
-  * 🕒 Version : `3.10.4`
-* ✔ Dependency : [`requirements`](./requirements.txt)
+||운영체제(OS)|언어(Language)|프레임워크(Framework)|종속성(Dependency)|
+|-|:-:|:-:|:-:|:-:|
+|명칭(Name)|![Windows](https://img.shields.io/badge/Windows-0078D6?style=flat-square&logo=Windows&logoColor=white)|![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=Python&logoColor=white)|-|![PY-PI](https://img.shields.io/badge/PYPI-3775A9?style=flat-square&logo=PyPI&logoColor=white)|
+|버전(Version)|`10, 11`|`3.10`|-|`22.2.1`|
 
 ## 📖 비고(Remark)
 
