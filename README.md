@@ -1,6 +1,6 @@
-## 📕 프로젝트 개요(Introduce Project)
+# 📕 프로젝트 개요(Introduce Project)
 
-### 🍳 Egg(R)-DB Moonsor
+## 🍳 Egg(R)-DB Docs
 
 * 관계형 데이터베이스를 조회하여 테이블 기술서를 작성합니다.
 
